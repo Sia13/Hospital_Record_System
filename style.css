@@ -1,0 +1,54 @@
+/* styles.css */
+:root {
+    --offcanvas-width: 200px;
+    --topNavbarHeight: 50px;
+}
+
+.offcanvas.offcanvas-start{
+    width: var(--offcanvas-width);
+}
+
+hr {
+    margin: 0;
+    padding: 0;
+  }
+  
+
+#add-doctor-link:hover {
+    background-color: #0dcaf0;
+    color: #fff;
+}
+
+#add-patient-link:hover {
+    background-color: #0dcaf0;
+    color: #fff;
+}
+
+li {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+@media (min-width: 992px) {
+
+    main{
+        margin-left: var(--offcanvas-width);
+    }
+
+    body {
+        overflow: auto !important;
+    }
+
+    .offcanvas.offcanvas-start::before{
+        display: none;
+    }
+
+
+    .offcanvas.offcanvas-start {
+        transform: none;
+        visibility: visible !important;
+        top:var(--topNavbarHeight);
+        height: calc(100% - var(--topNavbarHeight));
+    }
+}
+

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Record System</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/be49a0ff9f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+
+          <!--offcanvas trigger-->
+          <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <span class="navbar-toggler-icon"
+            data-bs-target="#offcanvasExample"></span>
+        </button>
+        <!--offcanvas trigger-->
+
+          <a class="navbar-brand fw-bold text-uppercase me-auto" href="#">Admin Dashboard</a>
+        </div>
+      </nav>
+
+      <!--off canvas-->
+      <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        
+        <div class="offcanvas-body p-0">
+            <nav class="navbar-dark">
+                <ul class="navbar-nav">
+                    <li class="my-3">
+                        
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#add-patient-modal" id="add-patient-link" class="nav-link px-3 active fs-4">
+                            <span class="me-2"><i class="bi bi-person-fill-add"></i></span>
+                            <span>Add Patient</span>
+                        </a>
+                    </li>
+
+                    <!--add patient model-->
+                    <div class="modal" id="add-patient-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-info text-white">
+                                    <h3 class="modal-title">Add Patient</h3>
+                                    <button type="button" class="btn-close" id="close-btn" data-bs-dismiss="modal">
+                                        <!--i class="fa fa-times-circle"></i>-->
+                                    </button>
+                                </div>
+                                <div class="modal-body bg-light">
+                                    <form id="add-patient-form">
+                                        <div class="input-group mb-3">
+                                            <input id="add-name" type="text" class="form-control" placeholder="Patient Name" required>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input id="add-address" type="text" class="form-control" placeholder="Patient Address" required>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input id="add-contact" type="text" class="form-control" placeholder="Patient Contact" required>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input id="add-diagnosis" type="text" class="form-control" placeholder="Patient Diagnosis" required>
+                                        </div>
+                                        <div class="d-grid gap-2 col-6 mx-auto" data-bs-dismiss="modal">
+                                            <input type="submit" value="Add" class="btn btn-success">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <li>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#add-doctor-modal" id="add-doctor-link" class="nav-link px-3 active fs-4">
+                            <span class="me-2"><i class="fa-solid fa-user-doctor"></i></span>
+                            <span>Add Doctor</span>
+                        </a>
+                    </li>
+
+                    <!--add doctor model-->
+                    <div class="modal" id="add-doctor-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-info text-white">
+                                    <h3 class="modal-title">Add Doctor</h3>
+                                    <button type="button" class="btn-close" id="close-button" data-bs-dismiss="modal">
+                                    </button>
+                                </div>
+                                <div class="modal-body bg-light">
+                                    <form id="add-doctor-form">
+                                        <div class="input-group mb-3">
+                                            <input id="Add-Name" type="text" class="form-control" placeholder="Doctor Name" required>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input id="Add-Type" type="text" class="form-control" placeholder="Doctor Type" required>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input id="Add-Contact" type="text" class="form-control" placeholder="Doctor Contact" required>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input id="add-experience" type="text" class="form-control" placeholder="Doctor Experience" required>
+                                        </div>
+                                        <div class="d-grid gap-2 col-6 mx-auto" data-bs-dismiss="modal">
+                                            <input type="submit" value="Add" class="btn btn-success">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                </ul>
+            </nav>
+        </div>
+      </div>
+
+      <!-- main -->
+      <main class="mt-5 pt-3">
+        <div class="container-fluid">
+            <div class="row">
+            </div>
+        </div>
+
+        <!--Update Patient Modal-->
+        <div class="modal" id="update-patient-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-info text-white">
+                        <h3 class="modal-title">Update Patient</h3>
+                        <button type="button" class="btn-close" id="close-btn" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body bg-light">
+                        <form id="update-patient-form">
+                            <div class="input-group mb-3">
+                                <input hidden id="update-id" type="text" class="form-control" placeholder="Patient Id" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input id="update-name" type="text" class="form-control" placeholder="Patient Name" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input id="update-address" type="text" class="form-control" placeholder="Patient Address" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input id="update-contact" type="text" class="form-control" placeholder="Patient Contact" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input id="update-diagnosis" type="text" class="form-control" placeholder="Patient Diagnosis" required>
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto" data-bs-dismiss="modal">
+                                <input type="submit" value="Update" class="btn btn-info">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Patient table-->
+        <div class="row">
+            <div class="col-md-12 fw-bold fs-3 text-center">Patients Data</div>
+        </div>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-hover table-striped table-secondary text-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>NAME</th>
+                                <th>ADDRESS</th>
+                                <th>CONTACT</th>
+                                <th>DIAGNOSIS</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!--Update Doctor Modal-->
+        <div class="modal" id="update-doctor-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-info text-white">
+                        <h3 class="modal-title">Update Doctor</h3>
+                        <button type="button" class="btn-close" id="close-btn" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body bg-light">
+                        <form id="update-doctor-form">
+                            <div class="input-group mb-3">
+                                <input id="update-Id" type="text" class="form-control" placeholder="Doctor Id" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input id="update-Name" type="text" class="form-control" placeholder="Doctor Name" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input id="update-type" type="text" class="form-control" placeholder="Doctor Type" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input id="update-Contact" type="text" class="form-control" placeholder="Doctor Contact" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input id="update-experience" type="text" class="form-control" placeholder="Doctor Experience" required>
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto" data-bs-dismiss="modal">
+                                <input type="submit" value="Update" class="btn btn-info">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Doctor Table-->
+        <div class="row">
+            <div class="col-md-12 fw-bold fs-3 text-center">Doctors Data</div>
+        </div>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-hover table-striped table-secondary text-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>NAME</th>
+                                <th>CONTACT</th>
+                                <th>TYPE</th>
+                                <th>EXPERIENCE</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body" class="t-body">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+      </main>
+
+    <!-- Add Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module" src="app.js"></script>
+    <script type="module" src="app2.js"></script>
+
+    <script>
+        const addPatient = document.getElementById('add-patient-link');
+            const patientModal = document.getElementById('add-patient-modal');
+
+            addPatient.addEventListener('click', () => {
+                patientModal.style.display = 'block';
+            })
+
+            const closeBtn = document.getElementById('close-btn');
+            closeBtn.addEventListener('click', () => {
+                patientModal.style.display = 'none';
+            })
+    </script>
+
+<script>
+    const addDoctor = document.getElementById('add-doctor-link');
+        const doctorModal = document.getElementById('add-doctor-modal');
+
+        addDoctor.addEventListener('click', () => {
+            doctorModal.style.display = 'block';
+        })
+
+        const closeButton = document.getElementById('close-button');
+        closeButton.addEventListener('click', () => {
+        doctorModal.style.display = 'none';
+        })
+</script>
+
+</body>
+</html>
